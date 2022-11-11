@@ -65,8 +65,37 @@
 }
 /* ======== */
 
+/* UPPER ARM */
+.upper-arm {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	/*transform: rotate(0deg);*/
+}
+
+.left-arm {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: rotate(-90deg);
+}
+
+.bottom-arm {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: rotate(180deg);
+}
+
+.right-arm {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: rotate(90deg);
+}
+
 /* UPPER LIMB */
-.upperlimb-container {
+.limb-container {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -74,7 +103,7 @@
 	justify-content: center;
 }
 
-.upperlimb {
+.limb {
 	margin-top: 5px;
 	width: 5%;
 	height: 35%;
@@ -82,63 +111,8 @@
 }
 /* ======== */
 
-/* BOTTOM LIMB */
-.bottomlimb-container {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
-
-}
-
-.bottomlimb {
-	margin-bottom: 5px;
-	width: 5%;
-	height: 35%;
-	background: black;
-}
-/* ======== */
-
-/* LEFT LIMB */
-.leftlimb-container {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-}
-
-.leftlimb {
-	margin-left: 5px;
-	width: 35%;
-	height: 5%;
-	background: black;
-}
-/* ======== */
-
-/* RIGHT LIMB */
-.rightlimb-container {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-
-}
-
-.rightlimb {
-	margin-right: 5px;
-	width: 35%;
-	height: 5%;
-	background: black;
-}
-/* ======== */
-
 /* UPPER LEFT PROBE */
-.upperprobe-left-container {
+.probe-left-container {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -146,7 +120,7 @@
 	justify-content: center;
 }
 
-.upperprobe-left {
+.probe-left {
 	margin-top: 5px;
 	margin-right: 10%;
 	width: 15%;
@@ -156,7 +130,7 @@
 /* ======== */
 
 /* UPPER MIDDLE PROBE */
-.upperprobe-mid-container {
+.probe-mid-container {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -164,7 +138,7 @@
 	justify-content: center;
 }
 
-.upperprobe-mid {
+.probe-mid {
 	margin-top: 5px;
 	width: 15%;
 	height: 5%;
@@ -173,7 +147,7 @@
 /* ======== */
 
 /* UPPER RIGHT PROBE */
-.upperprobe-right-container {
+.probe-right-container {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -181,10 +155,53 @@
 	justify-content: center;
 }
 
-.upperprobe-right {
+.probe-right {
 	margin-top: 5px;
 	margin-left: 10%;
 	width: 15%;
 	height: 5%;
 	background: black;
 }
+/* ======== */
+
+/* UPPER LEFT ALTERNATIVE PROBE */
+.altprobe-left-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.altprobe-left {
+	margin-right: 20%;
+	width: 5%;
+	height: 15%;
+	background: black;
+}
+/* ======== */
+
+/* UPPER RIGHT ALTERNATIVE PROBE */
+.altprobe-right-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.altprobe-right {
+	margin-left: 20%;
+	width: 5%;
+	height: 15%;
+	background: black;
+}
+/* ========= */
+
+/* CENTER PROBE */
+.center-probe {
+	width: 100%;
+	height: 100%;
+	translate: 0 17%;
+}
+/* ======== */
