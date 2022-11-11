@@ -1,0 +1,190 @@
+:root {
+	--background: #aaa;
+}
+
+* {
+	padding: 0;
+	margin:  0;
+}
+
+.line {
+	padding: 10px;
+}
+
+.character {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	background: var(--background);
+}
+
+
+/* CIRCLE */
+.circle-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.outer-circle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width:  30%;
+	height: 30%;
+	background: black;
+	border-radius: 50%;
+}
+
+.inner-circle {
+	width:  60%;
+	height: 60%;
+	background: var(--background);
+	border-radius: 50%;
+}
+/* ======= */
+
+/* DOT */
+.dot-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.dot {
+	width:  5%;
+	height: 5%;
+	background: black;
+	border-radius: 50%;
+}
+/* ======== */
+
+/* UPPER LIMB */
+.upperlimb-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.upperlimb {
+	margin-top: 5px;
+	width: 5%;
+	height: 35%;
+	background: black;
+}
+/* ======== */
+
+/* BOTTOM LIMB */
+.bottomlimb-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+
+}
+
+.bottomlimb {
+	margin-bottom: 5px;
+	width: 5%;
+	height: 35%;
+	background: black;
+}
+/* ======== */
+
+/* LEFT LIMB */
+.leftlimb-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.leftlimb {
+	margin-left: 5px;
+	width: 35%;
+	height: 5%;
+	background: black;
+}
+/* ======== */
+
+/* RIGHT LIMB */
+.rightlimb-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
+}
+
+.rightlimb {
+	margin-right: 5px;
+	width: 35%;
+	height: 5%;
+	background: black;
+}
+/* ======== */
+
+/* UPPER LEFT PROBE */
+.upperprobe-left-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.upperprobe-left {
+	margin-top: 5px;
+	margin-right: 10%;
+	width: 15%;
+	height: 5%;
+	background: black;
+}
+/* ======== */
+
+/* UPPER MIDDLE PROBE */
+.upperprobe-mid-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.upperprobe-mid {
+	margin-top: 5px;
+	width: 15%;
+	height: 5%;
+	background: black;
+}
+/* ======== */
+
+/* UPPER RIGHT PROBE */
+.upperprobe-right-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.upperprobe-right {
+	margin-top: 5px;
+	margin-left: 10%;
+	width: 15%;
+	height: 5%;
+	background: black;
+}
