@@ -132,7 +132,7 @@
   </div>
 
   <div>
-    <button>Delete</button>
+    <button on:click={() => dispatch('deleteCharacter')}>Delete</button>
   </div>
 </main>
 

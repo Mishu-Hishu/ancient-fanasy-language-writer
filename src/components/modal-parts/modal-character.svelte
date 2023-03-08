@@ -12,8 +12,16 @@
   const resized = Math.floor(window.innerWidth * 0.7);
   const maxSize = 300;
   const fullChar = [1, 1, 6, 6, 1, 6, 6, 1, 6, 6, 1, 6, 6, 1];
+  let current = "mid"
 
-  $: size = resized < maxSize ? resized : maxSize;
+  $: size = Math.min(resized, maxSize);
+
+  const selectPart = (data) => {
+    console.log(current);
+    current = data.part;
+    console.log(current);
+    dispatch('select',data);
+  }
 </script>
 
 <div
@@ -24,7 +32,7 @@
   <div class="item">1</div>
 
   <!-- 2 -->
-  <div class="item" on:click={() => dispatch('select',{button: 1})} on:keydown={()=>{}}>
+  <div class={`item`} class:selected={current === "top"} on:click={() => selectPart({button: 1, part: "top"})} on:keydown={()=>{}}>
     <!-- upper arm -->
     {#if character[1]}
       <Arm arm="upper-arm" {character} {color} />
@@ -35,7 +43,7 @@
   <div class="item">3</div>
 
   <!-- 4 -->
-  <div class="item" on:click={() => dispatch('select',{button: 2})} on:keydown={()=>{}}>
+  <div class={`item`} on:click={() => dispatch('select',{button: 2})} on:keydown={()=>{}}>
     <!-- left arm -->
     {#if character[4]}
       <Arm arm="left-arm" {character} {color} />
@@ -43,14 +51,14 @@
   </div>
 
   <!-- 5 -->
-  <div class="item"  on:click={() => dispatch('select',{button: 0})} on:keydown={()=>{}}>
+  <div class={`item`}  on:click={() => dispatch('select',{button: 0})} on:keydown={()=>{}}>
     {#if character[0]}
       <Circle dot={character[13]} {color}/>
     {/if}
   </div>
 
   <!-- 6 -->
-  <div class="item" on:click={() => dispatch('select',{button: 4})} on:keydown={()=>{}}>
+  <div class={`item`} on:click={() => dispatch('select',{button: 4})} on:keydown={()=>{}}>
     <!-- right arm -->
     {#if character[10]}
       <Arm arm="right-arm" {character} {color} />
@@ -61,7 +69,7 @@
   <div class="item">7</div>
 
   <!-- 8 -->
-  <div class="item" on:click={() => dispatch('select',{button: 3})} on:keydown={()=>{}}>
+  <div class={`item`} on:click={() => dispatch('select',{button: 3})} on:keydown={()=>{}}>
     <!-- bottom arm -->
     {#if character[7]}
       <Arm arm="bottom-arm" {character} {color} />
@@ -90,6 +98,10 @@
     width: 74px;
     height:74px;
     background-color: blue;
+  }
+
+  .selected {
+    background-color: yellow;
   }
 
   .ontop {

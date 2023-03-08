@@ -50,8 +50,10 @@
   .character {
     display: inline-block;
     position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 5px;
+    width: 20vw;
+    height: 20vw;
+    margin: 0 min(5px, 1vw) 3px;
+    max-width: 100px;
+    max-height: 100px;
   }
 </style>
