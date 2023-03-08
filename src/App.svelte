@@ -2,7 +2,7 @@
   import Line from "./components/line.svelte";
   // import ModalContent from "./components/modal-content.svelte";
   import ModalContent from "./components/modal2-content.svelte";
-  import { EmptyLine, demoFile, newCharacter } from "./constants/structures";
+  import { EmptyLine, demoFile, newCharacter, EmptyDocument } from "./constants/structures";
   import { extraUI } from "./stores/stores";
 
   let currentDoc = 0;
@@ -21,9 +21,29 @@
     currentChar = detail.char;
   };
 
+  const addDoc = (jump = true) => {
+    const newDoc = new EmptyDocument();
+    const index = file.documents.push(newDoc) -1;
+    file = file;
+    if(jump)
+      currentDoc = index;
+  };
+
+  const removeDoc = () => {
+    const index = currentDoc;
+    if(file.documents.length > 1) {
+      if(currentDoc > 0) 
+        currentDoc--;
+      file.documents.splice(index,1);
+    } else {
+      addDoc(false);
+      file.documents.splice(index,1);
+    }
+    file = file;
+  };
+
   const addLine = () => {
     const newLine = new EmptyLine();
-    console.log(newLine);
     file.documents[currentDoc].lines.push(newLine);
     file = file;
   };
@@ -90,6 +110,16 @@
       >
     </div>
   </div>
+  {#if $extraUI}
+    <div class="buttons-wrapper">
+      <button on:click={() => addDoc()}>New Document</button>
+      <button on:click={removeDoc}>Delete Document</button>
+    </div>
+  {/if}
+
+  <div class="page-count">
+    {currentDoc+1 + "/" + file.documents.length}
+  </div>
 
   {#if modalOpen}
     <div class="modal" on:click|self={closeModal} on:keydown={() => {}}>
@@ -119,5 +149,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .page-count {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
   }
 </style>

@@ -6,6 +6,16 @@ export function newCharacter() {
   return [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 };
 
+export function EmptyDocument() {
+  this.lines = [
+    {
+      characters: [
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ],
+    },
+  ]
+}
+
 export const demoFile = {
     documents: [
       {
