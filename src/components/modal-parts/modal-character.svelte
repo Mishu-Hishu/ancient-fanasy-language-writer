@@ -17,9 +17,9 @@
   $: size = Math.min(resized, maxSize);
 
   const selectPart = (data) => {
-    console.log(current); //related to highlighting maybe
+    // console.log(current); //related to highlighting maybe
     current = data.part;
-    console.log(current); //related to highlighting maybe
+    // console.log(current); //related to highlighting maybe
     dispatch('select',data);
   }
 </script>

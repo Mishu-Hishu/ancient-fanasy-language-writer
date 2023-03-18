@@ -2,11 +2,13 @@
   import Line from "./components/line.svelte";
   // import ModalContent from "./components/modal-content.svelte";
   import ModalContent from "./components/modal2-content.svelte";
+  import DataModal from "./components/read-data-modal.svelte";
   import { EmptyLine, demoFile, newCharacter, EmptyDocument } from "./constants/structures";
   import { extraUI } from "./stores/stores";
 
   let currentDoc = 0;
   let modalOpen = false;
+  let dataModalOpen= false;
   let selectedCharacter = null;
   let currentLine;
   let currentChar;
@@ -19,6 +21,10 @@
       file.documents[currentDoc].lines[detail.line].characters[detail.char];
     currentLine = detail.line;
     currentChar = detail.char;
+  };
+
+  const openDataModal = () => {
+    dataModalOpen = true;
   };
 
   const addDoc = (jump = true) => {
@@ -62,6 +68,7 @@
   const closeModal = () => {
     //close modal
     modalOpen = false;
+    dataModalOpen = false;
 
     //reset meta data
     currentLine = null;
@@ -76,6 +83,19 @@
 
     closeModal();
   };
+
+  const copyData = () => {
+    console.log('data copied');
+    const fileContent = JSON.stringify(file);
+    navigator.clipboard.writeText(fileContent);
+  }
+
+  const setFileData = (incomingData) => {
+    const data = JSON.parse(incomingData);
+    file = data;
+    closeModal();
+    $extraUI = false;
+  }
 </script>
 
 <main>
@@ -112,8 +132,12 @@
   </div>
   {#if $extraUI}
     <div class="buttons-wrapper">
-      <button on:click={() => addDoc()}>New Document</button>
-      <button on:click={removeDoc}>Delete Document</button>
+      <button  class="doc-btn-l" on:click={() => addDoc()}>New Document</button>
+      <button class="doc-btn-r" on:click={removeDoc}>Delete Document</button>
+    </div>
+    <div class="data-btns">
+      <button class="btn" on:click={copyData}>Copy data</button>
+      <button class="btn" on:click={openDataModal}>Read data</button>
     </div>
   {/if}
 
@@ -127,6 +151,14 @@
         character={selectedCharacter}
         on:updateui={() => (file = file)}
         on:deleteCharacter={removeCharacter}
+      />
+    </div>
+  {/if}
+
+  {#if dataModalOpen}
+    <div class="modal" on:click|self={closeModal} on:keydown={() => {}}>
+      <DataModal
+        on:loadData={(e) => setFileData(e.detail.data)}
       />
     </div>
   {/if}
@@ -156,5 +188,17 @@
     top: 10px;
     right: 10px;
     color: white;
+  }
+
+  .doc-btn-l {
+    margin-right: 0 4px;
+  }
+
+  .doc-btn-r {
+    margin-left: 0 4px;
+  }
+
+  .data-btns {
+    margin-top: 10px;
   }
 </style>
