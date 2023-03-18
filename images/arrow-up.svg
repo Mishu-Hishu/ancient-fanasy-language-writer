@@ -1,0 +1,25 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    aria-hidden="true"
+    role="img"
+    width="20"
+    height="20"
+    preserveAspectRatio="xMidYMid meet"
+    viewBox="0 0 20 20"
+>
+    <path 
+        d="M10,18 L10,2" 
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+    <path 
+        d="M6,6 L10,2 L14,6" 
+        stroke="black"
+        stroke-width="1"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    />
+</svg>
