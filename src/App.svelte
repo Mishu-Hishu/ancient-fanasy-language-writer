@@ -3,15 +3,20 @@
   // import ModalContent from "./components/modal-content.svelte";
   import ModalContent from "./components/modal2-content.svelte";
   import DataModal from "./components/read-data-modal.svelte";
+  import PasswordModal from "./components/passwordModal.svelte";
   import { EmptyLine, demoFile, newCharacter, EmptyDocument } from "./constants/structures";
   import { extraUI } from "./stores/stores";
+  import { encDecRypto } from "./lib/encription";
 
   let currentDoc = 0;
   let modalOpen = false;
-  let dataModalOpen= false;
+  let dataModalOpen = false;
+  let passwordModal = false;
   let selectedCharacter = null;
   let currentLine;
   let currentChar;
+  let password;
+  let enableFileEncryption = false;
 
   let file = demoFile;
 
@@ -25,6 +30,12 @@
 
   const openDataModal = () => {
     dataModalOpen = true;
+  };
+
+  const openPasswordModal = () => {
+    passwordModal = true;
+    // console.log(password);
+    // console.log('enable encryption:', enableFileEncryption);
   };
 
   const addDoc = (jump = true) => {
@@ -66,9 +77,10 @@
   };
 
   const closeModal = () => {
-    //close modal
+    //close modal/s
     modalOpen = false;
     dataModalOpen = false;
+    passwordModal = false;
 
     //reset meta data
     currentLine = null;
@@ -84,17 +96,38 @@
     closeModal();
   };
 
-  const copyData = () => {
-    console.log('data copied');
-    const fileContent = JSON.stringify(file);
-    navigator.clipboard.writeText(fileContent);
+  const copyData = async () => {
+    if(enableFileEncryption) {
+      const fileContent = JSON.stringify(file);
+      const encryptedData = await encDecRypto(password,fileContent,'encrypt');
+      navigator.clipboard.writeText(encryptedData);
+      console.log('data copied:', encryptedData);
+
+    } else {
+      const fileContent = JSON.stringify(file);
+      navigator.clipboard.writeText(fileContent);
+      console.log('data copied!');
+    }
   }
 
-  const setFileData = (incomingData) => {
-    const data = JSON.parse(incomingData);
-    file = data;
+  const setFileData = async (incomingData) => {
+    if(enableFileEncryption) {
+      const decryptedData = await encDecRypto(password,incomingData,'decrypt');
+      const data = JSON.parse(decryptedData);
+      file = data;
+    } else {
+      const data = JSON.parse(incomingData);
+      file = data;
+    }
     closeModal();
     $extraUI = false;
+  }
+
+  const setPassword = (pw) => {
+    if(!pw) console.warn('No password entered!');
+    password = pw;
+    // console.log(password);
+    closeModal();
   }
 </script>
 
@@ -138,6 +171,7 @@
     <div class="data-btns">
       <button class="btn" on:click={copyData}>Copy data</button>
       <button class="btn" on:click={openDataModal}>Read data</button>
+      <button class="btn" on:click={openPasswordModal}>Set file password</button>
     </div>
   {/if}
 
@@ -159,6 +193,16 @@
     <div class="modal" on:click|self={closeModal} on:keydown={() => {}}>
       <DataModal
         on:loadData={(e) => setFileData(e.detail.data)}
+      />
+    </div>
+  {/if}
+
+  {#if passwordModal}
+    <div class="modal" on:click|self={closeModal} on:keydown={() => {}}>
+      <PasswordModal
+        checked={enableFileEncryption}
+        on:setPassword={(e) => setPassword(e.detail.data)}
+        on:encryptionChange={(e) => enableFileEncryption = e.detail.checked}
       />
     </div>
   {/if}
