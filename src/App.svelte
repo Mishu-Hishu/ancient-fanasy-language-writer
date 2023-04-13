@@ -115,6 +115,7 @@
       if(addmode) {
         file.documents = [...file.documents, ...data.documents];
       } else {
+        currentDoc = 0;
         file = data;
       }
     } else {
@@ -122,6 +123,7 @@
       if(addmode) {
         file.documents = [...file.documents, ...data.documents];
       } else {
+        currentDoc = 0;
         file = data;
       }
     }
