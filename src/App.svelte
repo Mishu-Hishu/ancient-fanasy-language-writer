@@ -101,7 +101,7 @@
       const fileContent = JSON.stringify(file);
       const encryptedData = await encDecRypto(password,fileContent,'encrypt');
       navigator.clipboard.writeText(encryptedData);
-      console.log('data copied:', encryptedData);
+      console.log('data copied!');
 
     } else {
       const fileContent = JSON.stringify(file);
