@@ -20,8 +20,8 @@
     <input type="password" bind:value={data}>
     <div class="margin-top">
         <div>
-        <label for="">Enable Encryption:</label>
-        <input type="checkbox" bind:checked={checked} on:change={changeFileEncryptionSetting}>
+        <label for="checkbox">Enable Encryption:</label>
+        <input id="checkbox" type="checkbox" bind:checked={checked} on:change={changeFileEncryptionSetting}>
         </div>
         <button on:click={setPassword}>Set</button>
     </div>
