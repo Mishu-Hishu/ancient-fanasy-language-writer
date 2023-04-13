@@ -108,14 +108,22 @@
     }
   }
 
-  const setFileData = async (incomingData) => {
+  const setFileData = async (incomingData, addmode) => {
     if(enableFileEncryption) {
       const decryptedData = await encDecRypto(password,incomingData,'decrypt');
       const data = JSON.parse(decryptedData);
-      file = data;
+      if(addmode) {
+        file.documents = [...file.documents, ...data.documents];
+      } else {
+        file = data;
+      }
     } else {
       const data = JSON.parse(incomingData);
-      file = data;
+      if(addmode) {
+        file.documents = [...file.documents, ...data.documents];
+      } else {
+        file = data;
+      }
     }
     closeModal();
     $extraUI = false;
@@ -189,7 +197,7 @@
   {#if dataModalOpen}
     <div class="modal" on:click|self={closeModal} on:keydown={() => {}}>
       <DataModal
-        on:loadData={(e) => setFileData(e.detail.data)}
+        on:loadData={(e) => setFileData(e.detail.data, e.detail.addmode)}
       />
     </div>
   {/if}
