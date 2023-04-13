@@ -34,8 +34,6 @@
 
   const openPasswordModal = () => {
     passwordModal = true;
-    // console.log(password);
-    // console.log('enable encryption:', enableFileEncryption);
   };
 
   const addDoc = (jump = true) => {
@@ -77,7 +75,7 @@
   };
 
   const closeModal = () => {
-    //close modal/s
+    //close modals
     modalOpen = false;
     dataModalOpen = false;
     passwordModal = false;
@@ -126,7 +124,6 @@
   const setPassword = (pw) => {
     if(!pw) console.warn('No password entered!');
     password = pw;
-    // console.log(password);
     closeModal();
   }
 </script>
